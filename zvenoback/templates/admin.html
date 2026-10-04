@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель — ZvenoBack</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/admin.css">
+</head>
+<body class="admin-body">
+
+<div class="bg-layer admin-bg">
+    <div class="bg-grid admin-grid"></div>
+    <div class="bg-glow admin-glow-1"></div>
+    <div class="bg-glow admin-glow-2"></div>
+    <div class="bg-glow admin-glow-3"></div>
+</div>
+
+<div class="container">
+
+    <div id="header-container"></div>
+
+    <!-- ═══ ЗАГОЛОВОК АДМИНКИ ═══ -->
+    <div class="admin-header">
+        <div class="admin-header-title">
+            <span class="admin-crown">👑</span>
+            <div>
+                <h1>Админ-панель</h1>
+                <p>Управление ZvenoBack</p>
+            </div>
+        </div>
+        <div class="admin-header-right">
+            <span class="admin-role-badge">Администрация</span>
+        </div>
+    </div>
+
+    <!-- ═══ СТАТИСТИКА ═══ -->
+    <div class="admin-stats">
+        <div class="stat-card stat-blue">
+            <div class="stat-icon">👥</div>
+            <div class="stat-value" id="stat-users-total">—</div>
+            <div class="stat-label">Всего юзеров</div>
+        </div>
+        <div class="stat-card stat-green">
+            <div class="stat-icon">🟢</div>
+            <div class="stat-value" id="stat-users-online">—</div>
+            <div class="stat-label">Онлайн</div>
+        </div>
+        <div class="stat-card stat-cyan">
+            <div class="stat-icon">✓</div>
+            <div class="stat-value" id="stat-users-verified">—</div>
+            <div class="stat-label">Верифицированы</div>
+        </div>
+        <div class="stat-card stat-red">
+            <div class="stat-icon">🚫</div>
+            <div class="stat-value" id="stat-users-banned">—</div>
+            <div class="stat-label">Забанены</div>
+        </div>
+        <div class="stat-card stat-orange">
+            <div class="stat-icon">📝</div>
+            <div class="stat-value" id="stat-posts">—</div>
+            <div class="stat-label">Постов</div>
+        </div>
+        <div class="stat-card stat-pink">
+            <div class="stat-icon">💬</div>
+            <div class="stat-value" id="stat-messages">—</div>
+            <div class="stat-label">Сообщений</div>
+        </div>
+        <div class="stat-card stat-purple">
+            <div class="stat-icon">🗂</div>
+            <div class="stat-value" id="stat-chats">—</div>
+            <div class="stat-label">Чатов</div>
+        </div>
+    </div>
+
+    <!-- ═══ ТАБЫ ═══ -->
+    <div class="admin-tabs">
+        <button class="admin-tab active" data-tab="users">
+            👥 Пользователи
+        </button>
+        <button class="admin-tab" data-tab="log">
+            📜 Журнал действий
+        </button>
+    </div>
+
+    <!-- ═══ ТАБ: ПОЛЬЗОВАТЕЛИ ═══ -->
+    <div class="admin-tab-content active" id="tab-users">
+        <div class="admin-toolbar">
+            <div class="admin-search-wrap">
+                <span class="admin-search-icon">🔍</span>
+                <input type="text" id="admin-search" class="admin-search-input"
+                       placeholder="Поиск по нику, имени или email...">
+            </div>
+            <button class="admin-btn admin-btn-refresh" id="admin-refresh">
+                🔄 Обновить
+            </button>
+        </div>
+
+        <div class="users-list" id="users-list">
+            <div class="admin-empty">Загрузка...</div>
+        </div>
+    </div>
+
+    <!-- ═══ ТАБ: ЖУРНАЛ ═══ -->
+    <div class="admin-tab-content" id="tab-log">
+        <div class="admin-log" id="admin-log-list">
+            <div class="admin-empty">Загрузка...</div>
+        </div>
+    </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     МОДАЛКА СМЕНЫ ЭМОДЗИ
+     ═══════════════════════════════════════════════════════════ -->
+<div class="modal-overlay hidden" id="emoji-modal">
+    <div class="modal">
+        <div class="modal-header">
+            <h3>🎨 Сменить эмодзи</h3>
+            <button class="modal-close" data-close-emoji>✕</button>
+        </div>
+
+        <!-- Кому меняем -->
+        <div class="emoji-modal-user" id="emoji-modal-user">
+            <!-- JS заполнит -->
+        </div>
+
+        <!-- Текущий эмодзи -->
+        <div class="emoji-current-wrap">
+            <span class="emoji-current-label">Текущий:</span>
+            <span class="emoji-current-preview" id="emoji-current-preview">🐱</span>
+        </div>
+
+        <!-- Пикер -->
+        <div class="emoji-picker" id="admin-emoji-picker">
+            <div class="feed-loading" style="grid-column:1/-1;padding:20px 0;">
+                <div class="spinner"></div>
+            </div>
+        </div>
+
+        <div class="flex" style="display:flex;gap:10px;margin-top:16px;">
+            <button class="btn btn-block" id="emoji-save-btn">
+                💾 Сохранить
+            </button>
+            <button class="btn btn-secondary" data-close-emoji>
+                Отмена
+            </button>
+        </div>
+    </div>
+</div>
+
+<script src="/static/common.js"></script>
+<script src="/static/crypto.js"></script>
+<script src="/static/admin.js"></script>
+</body>
+</html>

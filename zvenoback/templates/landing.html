@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZvenoBack — твоя соцсеть</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        /* Встроенные стили — работают даже если style.css сломан */
+        .hero-logo-text {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            border-radius: 28px;
+            background: linear-gradient(135deg, #0078ff, #a020f0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 56px;
+            font-weight: 900;
+            color: white;
+            font-family: Arial, sans-serif;
+            box-shadow: 0 0 60px rgba(0, 120, 255, 0.6);
+            animation: heroFloat 4s ease-in-out infinite;
+        }
+        @keyframes heroFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="bg-layer">
+    <div class="bg-grid"></div>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+</div>
+
+<div class="hero">
+    <div class="hero-content">
+
+        <!-- ⭐ Логотип как ТЕКСТ (без SVG!) -->
+        <div class="hero-logo-text">ZB</div>
+
+        <h1>ZVENOBACK</h1>
+
+        <p class="tagline">
+            Твоя соцсеть. Твои правила.<br>
+            E2E-шифрование · Группы · Каналы · Лента
+        </p>
+
+        <div class="hero-buttons">
+            <a href="/register" class="btn">🚀 Создать аккаунт</a>
+            <a href="/login" class="btn btn-secondary">Войти</a>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">🔐</div>
+                <h3>E2E шифрование</h3>
+                <p>Сервер не видит твои сообщения.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">💬</div>
+                <h3>Чаты и каналы</h3>
+                <p>Личные, группы, каналы.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📸</div>
+                <h3>Посты с фото</h3>
+                <p>Лайки, комменты, репосты.</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

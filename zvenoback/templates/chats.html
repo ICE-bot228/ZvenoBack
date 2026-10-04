@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Чаты — ZvenoBack</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="bg-layer">
+    <div class="bg-grid"></div>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+</div>
+
+<div class="container">
+
+    <div id="header-container"></div>
+
+    <div class="chats-layout">
+
+        <!-- ═══ ЛЕВАЯ: СПИСОК ЧАТОВ ═══ -->
+        <aside class="chats-sidebar">
+
+            <div class="chats-sidebar-header">
+                <h2>💬 Чаты</h2>
+                <button class="chats-new-btn" id="chats-new-btn" title="Новый чат">+</button>
+            </div>
+
+            <div class="chats-search-wrap">
+                <span>🔍</span>
+                <input type="text" id="chats-search" placeholder="Поиск чатов...">
+            </div>
+
+            <div class="chats-list" id="chats-list">
+                <div class="feed-loading">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+
+        </aside>
+
+        <!-- ═══ ПРАВАЯ: ЗАГЛУШКА ═══ -->
+        <main class="chats-main" id="chats-main">
+            <div class="chats-placeholder">
+                <div class="chats-placeholder-icon">💬</div>
+                <div class="chats-placeholder-title">Выбери чат</div>
+                <div class="chats-placeholder-text">
+                    Слева — список твоих чатов. Или нажми <b>+</b> чтобы создать новый.
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+</div>
+
+<!-- ═══ МОДАЛКА НОВОГО ЧАТА ═══ -->
+<div class="modal-overlay hidden" id="new-chat-modal">
+    <div class="modal">
+        <div class="modal-header">
+            <h3>➕ Новый чат</h3>
+            <button class="modal-close" data-close-new-chat>✕</button>
+        </div>
+
+        <div class="new-chat-tabs">
+            <button class="new-chat-tab active" data-type="private">👤 ЛС</button>
+            <button class="new-chat-tab" data-type="group">👥 Группа</button>
+            <button class="new-chat-tab" data-type="channel">📢 Канал</button>
+        </div>
+
+        <!-- ЛС -->
+        <div id="new-chat-private" class="new-chat-pane">
+            <div class="form-group">
+                <label class="form-label">Кому написать</label>
+                <input type="text" id="new-chat-user-search"
+                       class="form-input" placeholder="Введи @ник или имя...">
+                <div class="new-chat-search-results" id="new-chat-user-results"></div>
+            </div>
+        </div>
+
+        <!-- ГРУППА -->
+        <div id="new-chat-group" class="new-chat-pane hidden">
+            <div class="form-group">
+                <label class="form-label">Название группы</label>
+                <input type="text" id="new-chat-group-name"
+                       class="form-input" placeholder="Например: Друзья" maxlength="50">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Описание (опц.)</label>
+                <input type="text" id="new-chat-group-desc"
+                       class="form-input" placeholder="О чём группа?" maxlength="200">
+            </div>
+
+            <!-- ⭐ ВЫБОР УЧАСТНИКОВ -->
+            <div class="form-group">
+                <label class="form-label">Участники</label>
+                <input type="text" id="new-chat-group-search"
+                       class="form-input" placeholder="Поиск юзеров для добавления...">
+
+                <!-- Список выбранных -->
+                <div class="selected-members" id="new-chat-group-selected"></div>
+
+                <!-- Результаты поиска -->
+                <div class="new-chat-search-results" id="new-chat-group-results"></div>
+            </div>
+        </div>
+
+        <!-- КАНАЛ -->
+        <div id="new-chat-channel" class="new-chat-pane hidden">
+            <div class="form-group">
+                <label class="form-label">Название канала</label>
+                <input type="text" id="new-chat-channel-name"
+                       class="form-input" placeholder="Например: Новости" maxlength="50">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Описание (опц.)</label>
+                <input type="text" id="new-chat-channel-desc"
+                       class="form-input" placeholder="О чём канал?" maxlength="200">
+            </div>
+
+            <!-- ⭐ ВЫБОР ПОДПИСЧИКОВ -->
+            <div class="form-group">
+                <label class="form-label">Подписчики (опц.)</label>
+                <input type="text" id="new-chat-channel-search"
+                       class="form-input" placeholder="Поиск юзеров...">
+                <div class="selected-members" id="new-chat-channel-selected"></div>
+                <div class="new-chat-search-results" id="new-chat-channel-results"></div>
+            </div>
+        </div>
+
+        <div class="form-error" id="new-chat-error"></div>
+
+        <div class="flex" style="display:flex;gap:10px;">
+            <button class="btn btn-block" id="new-chat-create">Создать</button>
+            <button class="btn btn-secondary" data-close-new-chat>Отмена</button>
+        </div>
+    </div>
+</div>
+
+<script src="/static/common.js"></script>
+<script src="/static/chats.js"></script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZvenoBack — Лента</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="bg-layer">
+    <div class="bg-grid"></div>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+</div>
+
+<div class="container">
+
+    <div id="header-container"></div>
+
+    <!-- ═══ ОСНОВНОЙ БЛОК — 3 КОЛОНКИ ═══ -->
+    <div class="feed-layout">
+
+        <!-- ─── ЛЕВАЯ КОЛОНКА ─── -->
+        <aside class="feed-sidebar-left">
+
+            <div class="card profile-mini" id="profile-mini">
+                <div class="profile-mini-loading">Загрузка...</div>
+            </div>
+
+            <div class="card sidebar-menu">
+                <a href="/" class="sidebar-menu-item active">
+                    <span>🏠</span><span>Лента</span>
+                </a>
+                <a href="/chats" class="sidebar-menu-item">
+                    <span>💬</span><span>Чаты</span>
+                </a>
+                <a href="/friends" class="sidebar-menu-item">
+                    <span>👥</span><span>Друзья</span>
+                </a>
+                <a href="/settings" class="sidebar-menu-item">
+                    <span>⚙</span><span>Настройки</span>
+                </a>
+            </div>
+
+            <div class="card sidebar-stats">
+                <div class="sidebar-stat">
+                    <div class="sidebar-stat-icon">📝</div>
+                    <div class="sidebar-stat-info">
+                        <div class="sidebar-stat-value" id="my-posts-count">—</div>
+                        <div class="sidebar-stat-label">постов</div>
+                    </div>
+                </div>
+                <div class="sidebar-stat">
+                    <div class="sidebar-stat-icon">❤️</div>
+                    <div class="sidebar-stat-info">
+                        <div class="sidebar-stat-value" id="my-likes-count">—</div>
+                        <div class="sidebar-stat-label">лайков</div>
+                    </div>
+                </div>
+                <div class="sidebar-stat">
+                    <div class="sidebar-stat-icon">👥</div>
+                    <div class="sidebar-stat-info">
+                        <div class="sidebar-stat-value" id="my-friends-count">—</div>
+                        <div class="sidebar-stat-label">друзей</div>
+                    </div>
+                </div>
+            </div>
+
+        </aside>
+
+        <!-- ─── ЦЕНТР — ЛЕНТА ─── -->
+        <main class="feed-main">
+
+            <div class="card post-form" id="post-form">
+                <div class="post-form-header">
+                    <div class="post-form-avatar" id="post-form-avatar"></div>
+                    <textarea class="post-form-input"
+                              id="post-text"
+                              placeholder="Что у тебя нового?"
+                              maxlength="5000"></textarea>
+                </div>
+
+                <div class="post-image-preview hidden" id="post-image-preview">
+                    <img id="post-image-preview-img" src="" alt="">
+                    <button class="post-image-remove" id="post-image-remove" title="Убрать">✕</button>
+                </div>
+
+                <div class="post-form-footer">
+                    <div class="post-form-left">
+                        <label class="post-form-attach" for="post-image-input">
+                            <span>📷</span>
+                            <span>Фото</span>
+                        </label>
+                        <input type="file" id="post-image-input" accept="image/*" hidden>
+                    </div>
+                    <button class="btn btn-small" id="post-submit" disabled>
+                        Опубликовать
+                    </button>
+                </div>
+            </div>
+
+            <div id="feed-posts">
+                <div class="feed-loading">
+                    <div class="spinner"></div>
+                    <div>Загрузка ленты...</div>
+                </div>
+            </div>
+
+            <div class="feed-more hidden" id="feed-more">
+                <button class="btn btn-secondary" id="btn-load-more">
+                    Загрузить ещё
+                </button>
+            </div>
+
+        </main>
+
+        <!-- ─── ПРАВАЯ КОЛОНКА ─── -->
+        <aside class="feed-sidebar-right">
+
+            <div class="card sidebar-search">
+                <div class="sidebar-search-wrap">
+                    <span class="sidebar-search-icon">🔍</span>
+                    <input type="text" id="feed-search"
+                           class="sidebar-search-input"
+                           placeholder="Поиск юзеров...">
+                </div>
+                <div class="sidebar-search-results hidden" id="feed-search-results"></div>
+            </div>
+
+            <div class="card sidebar-tips">
+                <div class="sidebar-tips-title">💡 Подсказки</div>
+                <div class="sidebar-tip">📷 Прикрепляй фото к постам</div>
+                <div class="sidebar-tip">❤️ Лайкай чужие посты</div>
+                <div class="sidebar-tip">💬 Комментируй и общайся</div>
+                <div class="sidebar-tip">👥 Добавляй друзей</div>
+            </div>
+
+        </aside>
+
+    </div>
+
+</div>
+
+<!-- Модалка комментариев -->
+<div class="modal-overlay hidden" id="comments-modal">
+    <div class="modal comments-modal">
+        <div class="comments-modal-header">
+            <h3>Комментарии</h3>
+            <button class="modal-close" data-close-modal>✕</button>
+        </div>
+        <div class="comments-list" id="comments-list">
+            <div class="feed-loading">
+                <div class="spinner"></div>
+            </div>
+        </div>
+        <div class="comments-form">
+            <div class="comments-form-avatar" id="comments-form-avatar"></div>
+            <input type="text" id="comment-input" class="comments-input"
+                   placeholder="Написать комментарий..." maxlength="1000">
+            <button class="btn btn-small" id="comment-submit">→</button>
+        </div>
+    </div>
+</div>
+
+<script src="/static/common.js"></script>
+<script src="/static/crypto.js"></script>
+<script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Друзья — ZvenoBack</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="bg-layer">
+    <div class="bg-grid"></div>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+</div>
+
+<div class="container">
+
+    <div id="header-container"></div>
+
+    <div class="friends-layout">
+
+        <!-- Заголовок -->
+        <div class="card friends-header">
+            <div class="friends-header-left">
+                <div class="friends-header-icon">👥</div>
+                <div>
+                    <h1>Друзья</h1>
+                    <p>Твоя сеть в ZvenoBack</p>
+                </div>
+            </div>
+            <div class="friends-header-stats">
+                <div class="friends-stat">
+                    <div class="friends-stat-value" id="friends-count">—</div>
+                    <div class="friends-stat-label">друзей</div>
+                </div>
+                <div class="friends-stat">
+                    <div class="friends-stat-value" id="requests-count">—</div>
+                    <div class="friends-stat-label">заявок</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Табы -->
+        <div class="friends-tabs">
+            <button class="friends-tab active" data-tab="all">
+                👥 Все друзья
+            </button>
+            <button class="friends-tab" data-tab="incoming">
+                📥 Входящие <span class="tab-badge hidden" id="badge-incoming">0</span>
+            </button>
+            <button class="friends-tab" data-tab="search">
+                🔍 Найти друзей
+            </button>
+        </div>
+
+        <!-- Таб: Все друзья -->
+        <div class="friends-tab-content active" id="tab-all">
+            <div class="friends-grid" id="friends-list">
+                <div class="feed-loading">
+                    <div class="spinner"></div>
+                    <div>Загрузка...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Таб: Входящие -->
+        <div class="friends-tab-content" id="tab-incoming">
+            <div class="friends-list-wide" id="incoming-list">
+                <div class="feed-loading">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Таб: Поиск -->
+        <div class="friends-tab-content" id="tab-search">
+            <div class="friends-search-wrap">
+                <span class="friends-search-icon">🔍</span>
+                <input type="text" id="friends-search"
+                       class="friends-search-input"
+                       placeholder="Введи ник или имя юзера...">
+            </div>
+            <div class="friends-list-wide" id="search-results">
+                <div class="friends-empty">
+                    <div class="friends-empty-icon">🔍</div>
+                    <div>Начни печатать чтобы найти друзей</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="/static/common.js"></script>
+<script src="/static/crypto.js"></script>
+<script src="/static/friends.js"></script>
+</body>
+</html>
